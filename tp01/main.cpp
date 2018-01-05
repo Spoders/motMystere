@@ -9,15 +9,12 @@ using namespace std;
 int calculeLigne();
 string chercheMotAlea(int nombreDeLigne);
 
-ifstream dictionnaireMot("C:/Users/vrumm/Desktop/Programme Langage C/tp01/motMystere/dico.txt"); //Ouvre le fichier dictionnaire
-
-int main() {
+  int main() {
 	string motMystere;
 	int nombreDeLigne = 0;
 
 	nombreDeLigne = calculeLigne();
 	motMystere = chercheMotAlea(nombreDeLigne);
-	cout << motMystere << endl;
 
 	system("PAUSE");
 	return 0;
@@ -25,32 +22,40 @@ int main() {
 
 string chercheMotAlea(int nombreDeLigne) {
 	srand(time(0));
-	string motMystere, ligne;
-	int ligneAléatoire;
+	string motMysteres, ligne;
+	int ligneAléatoire, ligneSuivie = 0;
+	ifstream dictionnaireMot("C:/Users/vrumm/Desktop/Programme Langage C/tp01/motMystere/dico.txt"); //Ouvre le fichier dictionnaire
 
 	//Trouve un ligne aléatoire et stock le mot
 	ligneAléatoire = rand() % nombreDeLigne;
 
-	nombreDeLigne = 0;
-	while (getline(dictionnaireMot, ligne)) {
-		nombreDeLigne++;
-		if (nombreDeLigne == ligneAléatoire) {
-			motMystere = ligne;
+	if (dictionnaireMot) {
+		while (getline(dictionnaireMot, ligne)) {
+			ligneSuivie++;
+			if (ligneSuivie == ligneAléatoire) {
+				motMysteres = ligne;
+			}
 		}
 	}
+	else {
+		cout << "Impossible d'ouvrire le dictionnaire" << endl;
+	}
+	dictionnaireMot.close();
 
-	return motMystere;
+	return motMysteres;
 }
 
 int calculeLigne() {
 	int nombreDeLigne = 0;
 	string ligne;
+	ifstream dictionnaireMot("C:/Users/vrumm/Desktop/Programme Langage C/tp01/motMystere/dico.txt"); //Ouvre le fichier dictionnaire
 
 	//Compte le nombre de ligne du dictionnaire
 	if (dictionnaireMot) {
 		while (getline(dictionnaireMot, ligne)) {
 			nombreDeLigne++;
 		}
+		dictionnaireMot.close();
 	}
 	else {
 		cout << "Impossible d'ouvrire le dictionnaire" << endl;
