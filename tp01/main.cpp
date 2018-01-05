@@ -8,13 +8,18 @@ using namespace std;
 
 int calculeLigne();
 string chercheMotAlea(int nombreDeLigne);
+string melangeMot(string motMystere);
 
   int main() {
-	string motMystere;
+	string motMystere, motMelange;
 	int nombreDeLigne = 0;
 
-	nombreDeLigne = calculeLigne();
-	motMystere = chercheMotAlea(nombreDeLigne);
+	nombreDeLigne = calculeLigne();							//Calcule du nombre de ligne du dictionnaire
+	motMystere = chercheMotAlea(nombreDeLigne);				//Recherche d'un mot mystere
+	motMelange = melangeMot(motMystere);
+
+	cout << motMystere << endl;
+	cout << motMelange << endl;
 
 	system("PAUSE");
 	return 0;
@@ -24,7 +29,7 @@ string chercheMotAlea(int nombreDeLigne) {
 	srand(time(0));
 	string motMysteres, ligne;
 	int ligneAléatoire, ligneSuivie = 0;
-	ifstream dictionnaireMot("C:/Users/vrumm/Desktop/Programme Langage C/tp01/motMystere/dico.txt"); //Ouvre le fichier dictionnaire
+	ifstream dictionnaireMot("C:/Users/vrumm/Desktop/Programme Langage C/tp01/motMystere/dico.txt"); 
 
 	//Trouve un ligne aléatoire et stock le mot
 	ligneAléatoire = rand() % nombreDeLigne;
@@ -62,4 +67,18 @@ int calculeLigne() {
 	}
 
 	return nombreDeLigne;
+}
+
+string melangeMot(string motMystere) {
+	srand(time(0));
+	int posLettre;
+	string motMelange;
+
+	do {
+		posLettre = rand() % motMystere.size();
+		motMelange += motMystere[posLettre];
+		motMystere.erase(posLettre);
+	} while (motMystere.size() != 0);
+
+	return motMelange;
 }
