@@ -4,3 +4,4 @@ Création d'un jeu motMystere ou a partir d'un dictionnaire de mot l'utilisateur 
 	- Boucle pour qu'il puisse recommence plusieur partie
 	- Dictionnaire de mots
 	- Fixer un nombre maximale de coups.
+	- Ajout d'indice
