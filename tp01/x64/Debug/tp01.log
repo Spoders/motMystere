@@ -1,4 +1,4 @@
 ﻿  main.cpp
-c:\users\vrumm\desktop\programme langage c\tp01\motmystere\tp01\main.cpp(29): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
-c:\users\vrumm\desktop\programme langage c\tp01\motmystere\tp01\main.cpp(73): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+c:\users\vrumm\desktop\programme langage c\tp01\motmystere\tp01\main.cpp(52): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+c:\users\vrumm\desktop\programme langage c\tp01\motmystere\tp01\main.cpp(96): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
   tp01.vcxproj -> C:\Users\vrumm\Desktop\Programme Langage C\tp01\motMystere\x64\Debug\tp01.exe

@@ -11,15 +11,38 @@ string chercheMotAlea(int nombreDeLigne);
 string melangeMot(string motMystere);
 
   int main() {
-	string motMystere, motMelange;
-	int nombreDeLigne = 0;
+	string motMystere, motMelange, motTemporaire, reponse = "n";
+	int nombreDeLigne = 0, nbrCoupMax, nbrCoups = 0;
 
-	nombreDeLigne = calculeLigne();							//Calcule du nombre de ligne du dictionnaire
-	motMystere = chercheMotAlea(nombreDeLigne);				//Recherche d'un mot mystere
-	motMelange = melangeMot(motMystere);
+	nombreDeLigne = calculeLigne();								//Calcule du nombre de ligne du dictionnaire
+	do {
+		cout << "Chargement" << endl;
+		motMystere = chercheMotAlea(nombreDeLigne);				//Recherche d'un mot mystere
+		motMelange = melangeMot(motMystere);					//Melange les lettres du mots
+		system("cls");
+		cout << "Quel est le nombre maximale de coups : ";
+		cin >> nbrCoupMax;
 
-	cout << motMystere << endl;
-	cout << motMelange << endl;
+		do {													//Boucle demande mot mystere
+			system("cls");
+			cout << motMystere << endl;
+			cout << "Il te reste " << nbrCoupMax - nbrCoups << " coups" <<endl;
+			cout << "Quel est le mot mystére : ";
+			cout << motMelange << endl;
+			cin >> motTemporaire;
+			nbrCoups++;
+			if (nbrCoups == nbrCoupMax) {
+				cout << "Tu as perdu ! Tu as utilisé " << nbrCoupMax << " coups" << endl;
+				
+				system("PAUSE");
+				return 0;
+			}
+		} while (motTemporaire != motMystere);
+
+		cout << "Bravo Tu as gagne" << endl;
+		cout << "Veux tu recommencer O/n" << endl;								
+		cin >> reponse;
+	} while (reponse != "N" && reponse != "n");					//Boucle demande nouvelle essaye
 
 	system("PAUSE");
 	return 0;
@@ -76,8 +99,8 @@ string melangeMot(string motMystere) {
 
 	do {
 		posLettre = rand() % motMystere.size();
-		motMelange += motMystere[posLettre];
-		motMystere.erase(posLettre);
+		motMelange = motMelange + motMystere[posLettre];
+		motMystere.erase(posLettre, 1);
 	} while (motMystere.size() != 0);
 
 	return motMelange;
